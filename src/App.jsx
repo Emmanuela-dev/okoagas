@@ -1,122 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import GetKit from './pages/GetKit';
+import './index.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+    <Router>
+      <div className="app">
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/get-kit" element={<GetKit />} />
+          </Routes>
+        </main>
+        
+        {/* Simple Footer */}
+        <footer style={{ backgroundColor: 'var(--secondary)', color: 'white', padding: '60px 0' }}>
+          <div className="container">
+            <div className="grid md:grid-cols-3 gap-12">
+              <div>
+                <h2 style={{ color: 'white', marginBottom: '1.5rem', fontSize: '1.5rem' }}>OKOA<span className="text-primary">GAS</span></h2>
+                <p style={{ opacity: 0.7 }}>Bringing clean, safe, and affordable cooking energy to every Kenyan home.</p>
+              </div>
+              <div>
+                <h3 style={{ color: 'white', marginBottom: '1.5rem' }}>Quick Links</h3>
+                <ul className="flex flex-col gap-2" style={{ listStyle: 'none' }}>
+                  <li><a href="/" style={{ opacity: 0.7 }}>Home</a></li>
+                  <li><a href="/#features" style={{ opacity: 0.7 }}>Features</a></li>
+                  <li><a href="/get-kit" style={{ opacity: 0.7 }}>Get a Kit</a></li>
+                </ul>
+              </div>
+              <div>
+                <h3 style={{ color: 'white', marginBottom: '1.5rem' }}>Contact</h3>
+                <p style={{ opacity: 0.7 }}>Email: hello@okoagas.co.ke</p>
+                <p style={{ opacity: 0.7 }}>Phone: +254 700 000 000</p>
+                <p style={{ opacity: 0.7 }}>Nairobi, Kenya</p>
+              </div>
+            </div>
+            <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', marginTop: '40px', paddingTop: '20px', textAlign: 'center', opacity: 0.5, fontSize: '0.9rem' }}>
+              &copy; {new Date().getFullYear()} Okoa Gas Limited. All rights reserved.
+            </div>
+          </div>
+        </footer>
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;
