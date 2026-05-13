@@ -49,10 +49,9 @@ const Navbar = () => {
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'glass py-3 shadow-sm' : 'bg-transparent py-5'}`}>
       <div className="container flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2 group">
-          <div className="bg-primary p-2 rounded-lg group-hover:rotate-12 transition-transform">
-            <Flame className="text-white w-6 h-6" />
-          </div>
+          <img src="/logo.svg" alt="Okoa Gas Logo" className="w-10 h-10 group-hover:rotate-12 transition-transform" />
           <span className="text-2xl font-black tracking-tighter text-secondary">
+
             OKOA<span className="text-primary">GAS</span>
           </span>
         </Link>

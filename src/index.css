@@ -125,7 +125,10 @@ h3 { font-size: 1.5rem; }
 .gap-8 { gap: 32px; }
 
 .w-full { width: 100%; }
+.w-10 { width: 40px; }
+.h-10 { height: 40px; }
 .fixed { position: fixed; }
+
 .absolute { position: absolute; }
 .top-0 { top: 0; }
 .left-0 { left: 0; }
