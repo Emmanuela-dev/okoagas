@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Zap, Leaf, ArrowRight, CheckCircle } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
-import { Link } from 'react-router-dom';
 
 const Home = () => {
   const location = useLocation();
