@@ -141,6 +141,21 @@ const GetKit = () => {
                         />
                       </div>
                     </div>
+                    <div style={{ marginTop: '2rem' }}>
+                      <h3 style={{ marginBottom: '1rem' }}>Find your location on the map</h3>
+                      <div style={{ width: '100%', height: '320px', borderRadius: '20px', overflow: 'hidden', border: '1px solid #e2e8f0' }}>
+                        <iframe
+                          title="Delivery location map"
+                          src={`https://www.google.com/maps?q=${encodeURIComponent(formData.area || 'Nairobi, Kenya')}&output=embed`}
+                          width="100%"
+                          height="100%"
+                          style={{ border: 0 }}
+                          allowFullScreen=""
+                          loading="lazy"
+                          referrerPolicy="no-referrer-when-downgrade"
+                        ></iframe>
+                      </div>
+                    </div>
                   </div>
                 )}
 
