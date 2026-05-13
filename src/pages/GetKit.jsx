@@ -19,13 +19,34 @@ const GetKit = () => {
   const nextStep = () => setStep(s => s + 1);
   const prevStep = () => setStep(s => s - 1);
 
-  const handleMpesaPayment = () => {
+  const handleMpesaPayment = async () => {
     setLoading(true);
-    // Simulate M-Pesa STK Push
-    setTimeout(() => {
+    try {
+      const amount = formData.kitSize === '6kg' ? 4500 : 7500;
+      const response = await fetch('/api/stk-push', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          phone: formData.phone,
+          amount: amount,
+          accountReference: 'OKOA-' + formData.name.substring(0, 10).replace(/\s/g, '')
+        })
+      });
+
+      const data = await response.json();
+      
+      if (data.ResponseCode === '0') {
+        // Success code for STK push request accepted
+        setSuccess(true);
+      } else {
+        alert('Payment request failed: ' + (data.CustomerMessage || 'Unknown error'));
+      }
+    } catch (error) {
+      console.error('Payment error:', error);
+      alert('An error occurred while processing payment. Please try again.');
+    } finally {
       setLoading(false);
-      setSuccess(true);
-    }, 3000);
+    }
   };
 
   const steps = [
