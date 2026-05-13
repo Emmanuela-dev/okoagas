@@ -29,13 +29,14 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 font-semibold">
           <Link to="/" className="hover:text-primary transition-colors">Home</Link>
-          <Link to="/#features" className="hover:text-primary transition-colors">Features</Link>
-          <Link to="/#how-it-works" className="hover:text-primary transition-colors">How it Works</Link>
+          <a href="/#features" className="hover:text-primary transition-colors">Features</a>
+          <a href="/#how-it-works" className="hover:text-primary transition-colors">How it Works</a>
           <Link to="/get-kit" className="btn-primary">
             Get Your Kit
             <ShoppingCart className="w-4 h-4" />
           </Link>
         </div>
+
 
         {/* Mobile Toggle */}
         <button className="md:hidden text-secondary" onClick={() => setIsOpen(!isOpen)}>
@@ -47,12 +48,14 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden absolute top-full left-0 w-full glass shadow-xl py-6 flex flex-col items-center gap-6 animate-fadeIn">
           <Link to="/" onClick={() => setIsOpen(false)} className="text-xl font-semibold">Home</Link>
-          <Link to="/#features" onClick={() => setIsOpen(false)} className="text-xl font-semibold">Features</Link>
+          <a href="/#features" onClick={() => setIsOpen(false)} className="text-xl font-semibold">Features</a>
+          <a href="/#how-it-works" onClick={() => setIsOpen(false)} className="text-xl font-semibold">How it Works</a>
           <Link to="/get-kit" onClick={() => setIsOpen(false)} className="btn-primary w-3/4 justify-center">
             Get Your Kit
           </Link>
         </div>
       )}
+
     </nav>
   );
 };
