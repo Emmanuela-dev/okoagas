@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Flame, Menu, X, ShoppingCart } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +15,35 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    // Handle hash navigation when location changes
+    if (location.hash) {
+      const hash = location.hash.substring(1); // Remove the '#'
+      setTimeout(() => {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100); // Small delay to ensure the page has rendered
+    }
+  }, [location]);
+
+  const handleNavClick = (path, hash) => {
+    setIsOpen(false);
+    if (location.pathname === '/' && hash) {
+      // If on home page, scroll to section
+      const element = document.getElementById(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else if (hash) {
+      // Navigate to home page with hash
+      navigate(`/#${hash}`);
+    } else {
+      navigate(path);
+    }
+  };
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'glass py-3 shadow-sm' : 'bg-transparent py-5'}`}>
@@ -28,9 +59,15 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 font-semibold">
+<<<<<<< HEAD
           <Link to="/" className="hover:text-primary transition-colors">Home</Link>
           <a href="/#features" className="hover:text-primary transition-colors">Features</a>
           <a href="/#how-it-works" className="hover:text-primary transition-colors">How it Works</a>
+=======
+          <button onClick={() => handleNavClick('/', '')} className="hover:text-primary transition-colors">Home</button>
+          <button onClick={() => handleNavClick('/', 'features')} className="hover:text-primary transition-colors">Features</button>
+          <button onClick={() => handleNavClick('/', 'how-it-works')} className="hover:text-primary transition-colors">How it Works</button>
+>>>>>>> 29472cd595c6351e6b3c58da477617cb331e3217
           <Link to="/get-kit" className="btn-primary">
             Get Your Kit
             <ShoppingCart className="w-4 h-4" />
@@ -47,9 +84,15 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden absolute top-full left-0 w-full glass shadow-xl py-6 flex flex-col items-center gap-6 animate-fadeIn">
+<<<<<<< HEAD
           <Link to="/" onClick={() => setIsOpen(false)} className="text-xl font-semibold">Home</Link>
           <a href="/#features" onClick={() => setIsOpen(false)} className="text-xl font-semibold">Features</a>
           <a href="/#how-it-works" onClick={() => setIsOpen(false)} className="text-xl font-semibold">How it Works</a>
+=======
+          <button onClick={() => handleNavClick('/', '')} className="text-xl font-semibold">Home</button>
+          <button onClick={() => handleNavClick('/', 'features')} className="text-xl font-semibold">Features</button>
+          <button onClick={() => handleNavClick('/', 'how-it-works')} className="text-xl font-semibold">How it Works</button>
+>>>>>>> 29472cd595c6351e6b3c58da477617cb331e3217
           <Link to="/get-kit" onClick={() => setIsOpen(false)} className="btn-primary w-3/4 justify-center">
             Get Your Kit
           </Link>
