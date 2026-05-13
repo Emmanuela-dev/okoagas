@@ -1,9 +1,22 @@
 import { motion } from 'framer-motion';
 import { Shield, Zap, Leaf, ArrowRight, CheckCircle } from 'lucide-react';
-import heroImg from '../assets/hero.png';
+import heroImg from '../assets/images/hero.png';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
@@ -17,66 +30,43 @@ const Home = () => {
   return (
     <div className="fade-in">
       {/* Hero Section */}
-      <section className="section py-5" style={{ paddingTop: '120px' }}>
-        <div className="container grid md:grid-cols-2 items-center gap-8">
+      <section className="section py-5" style={{ paddingTop: '160px', textAlign: 'center' }}>
+        <div className="container" style={{ maxWidth: '800px' }}>
           <motion.div 
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-primary font-bold tracking-tighter" style={{ fontSize: '0.9rem', textTransform: 'uppercase', marginBottom: '1rem', display: 'block' }}>
-              Clean Cooking for Everyone
+            <span className="text-primary font-bold tracking-tighter" style={{ fontSize: '1rem', textTransform: 'uppercase', marginBottom: '1.5rem', display: 'block' }}>
+              Clean Cooking for Every Home
             </span>
-            <h1 style={{ marginBottom: '1.5rem' }}>Switch to <span className="text-primary">Clean Energy</span> with OKOA GAS</h1>
-            <p className="text-muted" style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>
+            <h1 style={{ marginBottom: '2rem', fontSize: '4rem' }}>Switch to <span className="text-primary">Clean Energy</span> with OKOA GAS</h1>
+            <p className="text-muted" style={{ fontSize: '1.4rem', marginBottom: '3rem' }}>
               Safe, affordable, and reliable LPG cooking gas delivered to your doorstep. Join thousands of Kenyan homes making the switch today.
             </p>
-            <div className="flex gap-4">
-              <Link to="/get-kit" className="btn-primary">
+            <div className="flex gap-6 justify-center">
+              <Link to="/get-kit" className="btn-primary" style={{ padding: '16px 32px', fontSize: '1.1rem' }}>
                 Order Your Kit <ArrowRight className="w-5 h-5" />
               </Link>
-              <a href="#how-it-works" className="btn-secondary" style={{ padding: '12px 24px', fontWeight: '600' }}>
+              <a href="#how-it-works" className="btn-secondary" style={{ padding: '16px 32px', fontWeight: '600', fontSize: '1.1rem' }}>
                 How it Works
               </a>
             </div>
             
-            <div className="flex items-center gap-4" style={{ marginTop: '3rem' }}>
+            <div className="flex items-center gap-4 justify-center" style={{ marginTop: '4rem' }}>
               <div className="flex -space-x-2">
-                {[1,2,3,4].map(i => (
-                  <div key={i} style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#ddd', border: '2px solid white' }}></div>
+                {[1,2,3,4,5].map(i => (
+                  <div key={i} style={{ width: '45px', height: '45px', borderRadius: '50%', background: '#e2e8f0', border: '3px solid white' }}></div>
                 ))}
               </div>
-              <p className="text-muted" style={{ fontSize: '0.9rem' }}>
-                <span className="text-secondary font-bold">10,000+</span> happy families
+              <p className="text-muted" style={{ fontSize: '1rem' }}>
+                <span className="text-secondary font-bold">10,000+</span> happy families across Kenya
               </p>
             </div>
           </motion.div>
-
-          <motion.div 
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            style={{ position: 'relative' }}
-          >
-            <div style={{ 
-              position: 'absolute', 
-              top: '-20px', 
-              left: '-20px', 
-              width: '100%', 
-              height: '100%', 
-              background: 'var(--primary)', 
-              opacity: 0.1, 
-              borderRadius: '24px',
-              zIndex: -1 
-            }}></div>
-            <img 
-              src={heroImg} 
-              alt="Okoa Gas Kitchen" 
-              style={{ width: '100%', borderRadius: '24px', boxShadow: 'var(--shadow-lg)' }} 
-            />
-          </motion.div>
         </div>
       </section>
+
 
       {/* Features Section */}
       <section id="features" className="section" style={{ backgroundColor: '#fff' }}>

@@ -19,13 +19,34 @@ const GetKit = () => {
   const nextStep = () => setStep(s => s + 1);
   const prevStep = () => setStep(s => s - 1);
 
-  const handleMpesaPayment = () => {
+  const handleMpesaPayment = async () => {
     setLoading(true);
-    // Simulate M-Pesa STK Push
-    setTimeout(() => {
+    try {
+      const amount = formData.kitSize === '6kg' ? 4500 : 7500;
+      const response = await fetch('/api/stk-push', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          phone: formData.phone,
+          amount: amount,
+          accountReference: 'OKOA-' + formData.name.substring(0, 10).replace(/\s/g, '')
+        })
+      });
+
+      const data = await response.json();
+      
+      if (data.ResponseCode === '0') {
+        // Success code for STK push request accepted
+        setSuccess(true);
+      } else {
+        alert('Payment request failed: ' + (data.CustomerMessage || 'Unknown error'));
+      }
+    } catch (error) {
+      console.error('Payment error:', error);
+      alert('An error occurred while processing payment. Please try again.');
+    } finally {
       setLoading(false);
-      setSuccess(true);
-    }, 3000);
+    }
   };
 
   const steps = [
@@ -139,6 +160,21 @@ const GetKit = () => {
                           value={formData.houseNo} 
                           onChange={e => setFormData({...formData, houseNo: e.target.value})} 
                         />
+                      </div>
+                    </div>
+                    <div style={{ marginTop: '2rem' }}>
+                      <h3 style={{ marginBottom: '1rem' }}>Find your location on the map</h3>
+                      <div style={{ width: '100%', height: '320px', borderRadius: '20px', overflow: 'hidden', border: '1px solid #e2e8f0' }}>
+                        <iframe
+                          title="Delivery location map"
+                          src={`https://www.google.com/maps?q=${encodeURIComponent(formData.area || 'Nairobi, Kenya')}&output=embed`}
+                          width="100%"
+                          height="100%"
+                          style={{ border: 0 }}
+                          allowFullScreen=""
+                          loading="lazy"
+                          referrerPolicy="no-referrer-when-downgrade"
+                        ></iframe>
                       </div>
                     </div>
                   </div>
