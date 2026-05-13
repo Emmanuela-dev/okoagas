@@ -59,21 +59,14 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 font-semibold">
-<<<<<<< HEAD
-          <Link to="/" className="hover:text-primary transition-colors">Home</Link>
-          <a href="/#features" className="hover:text-primary transition-colors">Features</a>
-          <a href="/#how-it-works" className="hover:text-primary transition-colors">How it Works</a>
-=======
-          <button onClick={() => handleNavClick('/', '')} className="hover:text-primary transition-colors">Home</button>
-          <button onClick={() => handleNavClick('/', 'features')} className="hover:text-primary transition-colors">Features</button>
-          <button onClick={() => handleNavClick('/', 'how-it-works')} className="hover:text-primary transition-colors">How it Works</button>
->>>>>>> 29472cd595c6351e6b3c58da477617cb331e3217
+          <button onClick={() => handleNavClick('/', '')} className="hover:text-primary transition-colors bg-transparent border-none font-semibold p-0">Home</button>
+          <button onClick={() => handleNavClick('/', 'features')} className="hover:text-primary transition-colors bg-transparent border-none font-semibold p-0">Features</button>
+          <button onClick={() => handleNavClick('/', 'how-it-works')} className="hover:text-primary transition-colors bg-transparent border-none font-semibold p-0">How it Works</button>
           <Link to="/get-kit" className="btn-primary">
             Get Your Kit
             <ShoppingCart className="w-4 h-4" />
           </Link>
         </div>
-
 
         {/* Mobile Toggle */}
         <button className="md:hidden text-secondary" onClick={() => setIsOpen(!isOpen)}>
@@ -84,21 +77,14 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden absolute top-full left-0 w-full glass shadow-xl py-6 flex flex-col items-center gap-6 animate-fadeIn">
-<<<<<<< HEAD
-          <Link to="/" onClick={() => setIsOpen(false)} className="text-xl font-semibold">Home</Link>
-          <a href="/#features" onClick={() => setIsOpen(false)} className="text-xl font-semibold">Features</a>
-          <a href="/#how-it-works" onClick={() => setIsOpen(false)} className="text-xl font-semibold">How it Works</a>
-=======
-          <button onClick={() => handleNavClick('/', '')} className="text-xl font-semibold">Home</button>
-          <button onClick={() => handleNavClick('/', 'features')} className="text-xl font-semibold">Features</button>
-          <button onClick={() => handleNavClick('/', 'how-it-works')} className="text-xl font-semibold">How it Works</button>
->>>>>>> 29472cd595c6351e6b3c58da477617cb331e3217
+          <button onClick={() => handleNavClick('/', '')} className="text-xl font-semibold bg-transparent border-none">Home</button>
+          <button onClick={() => handleNavClick('/', 'features')} className="text-xl font-semibold bg-transparent border-none">Features</button>
+          <button onClick={() => handleNavClick('/', 'how-it-works')} className="text-xl font-semibold bg-transparent border-none">How it Works</button>
           <Link to="/get-kit" onClick={() => setIsOpen(false)} className="btn-primary w-3/4 justify-center">
             Get Your Kit
           </Link>
         </div>
       )}
-
     </nav>
   );
 };
