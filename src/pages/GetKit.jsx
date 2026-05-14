@@ -57,19 +57,19 @@ const GetKit = () => {
   ];
 
   return (
-    <div className="container" style={{ paddingTop: '120px', paddingBottom: '80px', minHeight: '100vh' }}>
-      <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+    <div className="container" style={{ paddingTop: '160px', paddingBottom: '120px', minHeight: '100vh' }}>
+      <div className="mx-auto" style={{ maxWidth: '700px' }}>
         
         {/* Progress Bar */}
-        <div className="flex justify-between items-center" style={{ marginBottom: '3rem', position: 'relative' }}>
-          <div style={{ position: 'absolute', top: '20px', left: '0', width: '100%', height: '2px', background: '#e2e8f0', zIndex: -1 }}></div>
-          <div style={{ position: 'absolute', top: '20px', left: '0', width: `${((step-1)/3)*100}%`, height: '2px', background: 'var(--primary)', zIndex: -1, transition: 'width 0.3s ease' }}></div>
+        <div className="flex justify-between items-center mb-16" style={{ position: 'relative' }}>
+          <div style={{ position: 'absolute', top: '24px', left: '0', width: '100%', height: '3px', background: '#e2e8f0', zIndex: -1 }}></div>
+          <div style={{ position: 'absolute', top: '24px', left: '0', width: `${((step-1)/3)*100}%`, height: '3px', background: 'var(--primary)', zIndex: -1, transition: 'width 0.5s cubic-bezier(0.16, 1, 0.3, 1)' }}></div>
           
           {steps.map((s, idx) => (
-            <div key={idx} className="flex flex-col items-center gap-2">
+            <div key={idx} className="flex flex-col items-center gap-4">
               <div style={{ 
-                width: '40px', 
-                height: '40px', 
+                width: '48px', 
+                height: '48px', 
                 borderRadius: '50%', 
                 background: step > idx + 1 ? 'var(--primary)' : (step === idx + 1 ? 'var(--primary)' : 'white'),
                 color: step > idx + 1 || step === idx + 1 ? 'white' : 'var(--text-muted)',
@@ -77,18 +77,19 @@ const GetKit = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: step === idx + 1 ? '0 0 0 4px rgba(13, 148, 136, 0.2)' : 'none'
+                boxShadow: step === idx + 1 ? '0 0 0 6px rgba(74, 222, 128, 0.2)' : 'none',
+                transition: 'all 0.3s ease'
               }}>
-                {step > idx + 1 ? <Check className="w-5 h-5" /> : s.icon}
+                {step > idx + 1 ? <Check className="w-6 h-6" /> : s.icon}
               </div>
-              <span style={{ fontSize: '0.8rem', fontWeight: step === idx + 1 ? '700' : '500', color: step === idx + 1 ? 'var(--primary)' : 'var(--text-muted)' }}>
+              <span className="text-2xl" style={{ fontWeight: step === idx + 1 ? '800' : '500', color: step === idx + 1 ? 'var(--primary)' : 'var(--text-muted)' }}>
                 {s.label}
               </span>
             </div>
           ))}
         </div>
 
-        <div className="glass" style={{ padding: '40px', borderRadius: '24px', boxShadow: 'var(--shadow-lg)' }}>
+        <div className="glass" style={{ padding: '60px', borderRadius: '40px', boxShadow: '0 40px 80px -20px rgba(0,0,0,0.1)' }}>
           <AnimatePresence mode="wait">
             {success ? (
               <motion.div 
@@ -96,43 +97,45 @@ const GetKit = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 style={{ textAlign: 'center' }}
               >
-                <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: '#dcfce7', color: '#16a34a', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 2rem' }}>
-                  <Check className="w-10 h-10" />
+                <div style={{ width: '100px', height: '100px', borderRadius: '50%', background: '#dcfce7', color: '#16a34a', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 3rem' }}>
+                  <Check className="w-12 h-12" />
                 </div>
-                <h2>Order Placed Successfully!</h2>
-                <p className="text-muted" style={{ marginTop: '1rem', marginBottom: '2rem' }}>
+                <h2 className="mb-6">Order Placed Successfully!</h2>
+                <p className="text-muted text-2xl mb-12">
                   Your OKOA GAS kit is on its way. Our team will contact you shortly for installation.
                 </p>
-                <button onClick={() => window.location.href = '/'} className="btn-primary">Return Home</button>
+                <Link to="/" className="btn-primary" style={{ padding: '18px 48px' }}>Return Home</Link>
               </motion.div>
             ) : (
               <motion.div
                 key={step}
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
+                exit={{ opacity: 0, x: -30 }}
+                transition={{ duration: 0.4, cubicBezier: [0.16, 1, 0.3, 1] }}
               >
                 {step === 1 && (
                   <div>
-                    <h2 style={{ marginBottom: '1.5rem' }}>Personal Details</h2>
-                    <div className="flex flex-col gap-4">
+                    <h2 className="mb-8">Personal Details</h2>
+                    <div className="flex flex-col gap-6">
                       <div>
-                        <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Full Name</label>
+                        <label className="block mb-3 font-bold text-xl">Full Name</label>
                         <input 
                           type="text" 
                           placeholder="John Doe" 
                           value={formData.name} 
                           onChange={e => setFormData({...formData, name: e.target.value})} 
+                          style={{ padding: '16px 20px', borderRadius: '12px' }}
                         />
                       </div>
                       <div>
-                        <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Phone Number (M-Pesa)</label>
+                        <label className="block mb-3 font-bold text-xl">Phone Number (M-Pesa)</label>
                         <input 
                           type="text" 
                           placeholder="0712 345 678" 
                           value={formData.phone} 
                           onChange={e => setFormData({...formData, phone: e.target.value})} 
+                          style={{ padding: '16px 20px', borderRadius: '12px' }}
                         />
                       </div>
                     </div>
@@ -141,30 +144,32 @@ const GetKit = () => {
 
                 {step === 2 && (
                   <div>
-                    <h2 style={{ marginBottom: '1.5rem' }}>Delivery Location</h2>
-                    <div className="flex flex-col gap-4">
+                    <h2 className="mb-8">Delivery Location</h2>
+                    <div className="flex flex-col gap-6">
                       <div>
-                        <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Neighborhood/Area</label>
+                        <label className="block mb-3 font-bold text-xl">Neighborhood/Area</label>
                         <input 
                           type="text" 
                           placeholder="e.g. Westlands, Nairobi" 
                           value={formData.area} 
                           onChange={e => setFormData({...formData, area: e.target.value})} 
+                          style={{ padding: '16px 20px', borderRadius: '12px' }}
                         />
                       </div>
                       <div>
-                        <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Apartment/House No.</label>
+                        <label className="block mb-3 font-bold text-xl">Apartment/House No.</label>
                         <input 
                           type="text" 
                           placeholder="e.g. Block A, Apt 4" 
                           value={formData.houseNo} 
                           onChange={e => setFormData({...formData, houseNo: e.target.value})} 
+                          style={{ padding: '16px 20px', borderRadius: '12px' }}
                         />
                       </div>
                     </div>
-                    <div style={{ marginTop: '2rem' }}>
-                      <h3 style={{ marginBottom: '1rem' }}>Find your location on the map</h3>
-                      <div style={{ width: '100%', height: '320px', borderRadius: '20px', overflow: 'hidden', border: '1px solid #e2e8f0' }}>
+                    <div className="mt-12">
+                      <h3 className="mb-6">Confirm your location</h3>
+                      <div style={{ width: '100%', height: '350px', borderRadius: '24px', overflow: 'hidden', border: '1px solid var(--border)', boxShadow: 'inset 0 2px 4px 0 rgba(0,0,0,0.05)' }}>
                         <iframe
                           title="Delivery location map"
                           src={`https://www.google.com/maps?q=${encodeURIComponent(formData.area || 'Nairobi, Kenya')}&output=embed`}
@@ -182,8 +187,8 @@ const GetKit = () => {
 
                 {step === 3 && (
                   <div>
-                    <h2 style={{ marginBottom: '1.5rem' }}>Select Your Kit</h2>
-                    <div className="flex flex-col gap-4">
+                    <h2 className="mb-8">Select Your Kit</h2>
+                    <div className="flex flex-col gap-6">
                       {[
                         { id: '6kg', name: '6kg Starter Kit', price: 'Ksh 0 Upfront', sub: 'Pay only for gas consumed' },
                         { id: '13kg', name: '13kg Family Kit', price: 'Ksh 0 Upfront', sub: 'Pay only for gas consumed' }
@@ -192,21 +197,23 @@ const GetKit = () => {
                           key={kit.id}
                           onClick={() => setFormData({...formData, kitSize: kit.id})}
                           style={{ 
-                            padding: '20px', 
-                            borderRadius: '12px', 
+                            padding: '32px', 
+                            borderRadius: '20px', 
                             border: `2px solid ${formData.kitSize === kit.id ? 'var(--primary)' : '#e2e8f0'}`,
                             cursor: 'pointer',
                             display: 'flex',
                             justifyContent: 'space-between',
                             alignItems: 'center',
-                            background: formData.kitSize === kit.id ? '#f0fdfa' : 'white'
+                            background: formData.kitSize === kit.id ? '#f0fdfa' : 'white',
+                            transition: 'all 0.3s ease',
+                            transform: formData.kitSize === kit.id ? 'scale(1.02)' : 'scale(1)'
                           }}
                         >
                           <div>
-                            <p style={{ fontWeight: '700' }}>{kit.name}</p>
-                            <p className="text-muted" style={{ fontSize: '0.9rem' }}>{kit.sub}</p>
+                            <p className="font-bold text-xl mb-1">{kit.name}</p>
+                            <p className="text-muted mb-0" style={{ fontSize: '1rem' }}>{kit.sub}</p>
                           </div>
-                          <span style={{ fontWeight: '800', color: 'var(--primary)' }}>{kit.price}</span>
+                          <span className="text-2xl" style={{ fontWeight: '900', color: 'var(--primary)' }}>{kit.price}</span>
                         </div>
                       ))}
                     </div>
@@ -214,26 +221,26 @@ const GetKit = () => {
                 )}
 
                 {step === 4 && (
-                  <div style={{ textAlign: 'center' }}>
-                    <h2 style={{ marginBottom: '1rem' }}>Complete Payment</h2>
-                    <p className="text-muted" style={{ marginBottom: '2rem' }}>
+                  <div className="text-center">
+                    <h2 className="mb-4">Complete Payment</h2>
+                    <p className="text-muted text-xl mb-12">
                       Click below to receive an M-Pesa STK push on your phone <strong>{formData.phone}</strong>.
                     </p>
-                    <div className="glass" style={{ padding: '20px', borderRadius: '16px', marginBottom: '2rem', textAlign: 'left' }}>
-                      <div className="flex justify-between" style={{ marginBottom: '0.5rem' }}>
-                        <span>Hardware Cost:</span>
-                        <span style={{ fontWeight: '700', color: 'var(--primary)' }}>FREE (Zero Upfront)</span>
+                    <div className="glass mb-12" style={{ padding: '32px', borderRadius: '24px', textAlign: 'left', border: '1px solid var(--border)' }}>
+                      <div className="flex justify-between mb-4">
+                        <span className="text-xl">Hardware Cost:</span>
+                        <span className="text-xl font-bold text-primary">FREE (Zero Upfront)</span>
                       </div>
-                      <div className="flex justify-between" style={{ marginBottom: '0.5rem' }}>
-                        <span>Installation & Setup:</span>
-                        <span style={{ fontWeight: '700', color: 'var(--primary)' }}>FREE</span>
+                      <div className="flex justify-between mb-4">
+                        <span className="text-xl">Installation & Setup:</span>
+                        <span className="text-xl font-bold text-primary">FREE</span>
                       </div>
-                      <div className="flex justify-between" style={{ borderTop: '1px solid #e2e8f0', paddingTop: '0.5rem', marginTop: '0.5rem' }}>
+                      <div className="flex justify-between pt-6 mt-6" style={{ borderTop: '1px solid #e2e8f0' }}>
                         <div className="flex flex-col">
-                          <span style={{ fontWeight: '700' }}>Initial Gas Credit:</span>
-                          <span style={{ fontSize: '0.7rem', opacity: 0.6 }}>Loaded directly to your meter</span>
+                          <span className="text-xl font-bold">Initial Gas Credit:</span>
+                          <span style={{ fontSize: '0.8rem', opacity: 0.6 }}>Loaded directly to your meter</span>
                         </div>
-                        <span style={{ fontWeight: '900', color: 'var(--primary)', fontSize: '1.2rem' }}>
+                        <span className="text-secondary" style={{ fontWeight: '900', fontSize: '2rem' }}>
                           Ksh {formData.kitSize === '6kg' ? '500' : '1,000'}
                         </span>
                       </div>
@@ -243,10 +250,10 @@ const GetKit = () => {
                       className="btn-primary w-full justify-center" 
                       onClick={handleMpesaPayment}
                       disabled={loading}
-                      style={{ padding: '16px' }}
+                      style={{ padding: '20px', borderRadius: '18px' }}
                     >
                       {loading ? (
-                        <><Loader2 className="w-5 h-5 animate-spin" /> Processing...</>
+                        <><Loader2 className="w-6 h-6 animate-spin mr-3" /> Processing...</>
                       ) : (
                         'Pay via M-PESA'
                       )}
@@ -255,16 +262,16 @@ const GetKit = () => {
                 )}
 
                 {!success && (
-                  <div className="flex justify-between" style={{ marginTop: '2.5rem' }}>
+                  <div className="flex justify-between mt-16">
                     {step > 1 ? (
-                      <button className="flex items-center gap-2 text-muted font-bold" onClick={prevStep}>
-                        <ChevronLeft className="w-5 h-5" /> Back
+                      <button className="flex items-center gap-2 text-muted font-bold text-xl hover:text-secondary transition-colors" onClick={prevStep}>
+                        <ChevronLeft className="w-6 h-6" /> Back
                       </button>
                     ) : <div></div>}
                     
                     {step < 4 && (
                       <button className="btn-primary" onClick={nextStep}>
-                        Next <ChevronRight className="w-5 h-5" />
+                        Next Step <ChevronRight className="w-6 h-6 ml-2" />
                       </button>
                     )}
                   </div>
