@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Calculator as CalcIcon, Trees, Wind, CreditCard, ArrowRight, RefreshCcw } from 'lucide-react';
 
 const Calculator = () => {

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Leaf, Globe, TrendingUp, Award, CheckCircle, ShieldCheck } from 'lucide-react';
 
