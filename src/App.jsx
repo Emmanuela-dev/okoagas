@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import GetKit from './pages/GetKit';
+import CarbonCredits from './pages/CarbonCredits';
+import Calculator from './pages/Calculator';
 import './index.css';
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/get-kit" element={<GetKit />} />
+            <Route path="/carbon-credits" element={<CarbonCredits />} />
+            <Route path="/calculator" element={<Calculator />} />
           </Routes>
         </main>
         

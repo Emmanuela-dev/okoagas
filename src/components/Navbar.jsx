@@ -59,8 +59,10 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 font-semibold">
           <button onClick={() => handleNavClick('/', '')} className="hover:text-primary transition-colors bg-transparent border-none font-semibold p-0">Home</button>
-          <button onClick={() => handleNavClick('/', 'features')} className="hover:text-primary transition-colors bg-transparent border-none font-semibold p-0">Features</button>
-          <button onClick={() => handleNavClick('/', 'how-it-works')} className="hover:text-primary transition-colors bg-transparent border-none font-semibold p-0">How it Works</button>
+          <button onClick={() => handleNavClick('/', 'features')} className="hover:text-primary transition-colors bg-transparent border-none font-semibold p-0 text-[1rem]">Features</button>
+          <button onClick={() => handleNavClick('/', 'how-it-works')} className="hover:text-primary transition-colors bg-transparent border-none font-semibold p-0 text-[1rem]">How it Works</button>
+          <Link to="/carbon-credits" className="hover:text-primary transition-colors font-semibold p-0 text-[1rem]" style={{ textDecoration: 'none', color: 'inherit' }}>Carbon Credits</Link>
+          <Link to="/calculator" className="hover:text-primary transition-colors font-semibold p-0 text-[1rem]" style={{ textDecoration: 'none', color: 'inherit' }}>Calculator</Link>
           <Link to="/get-kit" className="btn-primary">
             Get Your Kit
             <ShoppingCart className="w-4 h-4" />
@@ -79,6 +81,8 @@ const Navbar = () => {
           <button onClick={() => handleNavClick('/', '')} className="text-xl font-semibold bg-transparent border-none">Home</button>
           <button onClick={() => handleNavClick('/', 'features')} className="text-xl font-semibold bg-transparent border-none">Features</button>
           <button onClick={() => handleNavClick('/', 'how-it-works')} className="text-xl font-semibold bg-transparent border-none">How it Works</button>
+          <Link to="/carbon-credits" onClick={() => setIsOpen(false)} className="text-xl font-semibold" style={{ textDecoration: 'none', color: 'inherit' }}>Carbon Credits</Link>
+          <Link to="/calculator" onClick={() => setIsOpen(false)} className="text-xl font-semibold" style={{ textDecoration: 'none', color: 'inherit' }}>Calculator</Link>
           <Link to="/get-kit" onClick={() => setIsOpen(false)} className="btn-primary w-3/4 justify-center">
             Get Your Kit
           </Link>
