@@ -122,22 +122,22 @@ const Home = () => {
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
             >
-              <h2 className="mb-6" style={{ color: 'white' }}>The Power of <span className="text-primary">IoT Smart Meters</span></h2>
-              <p className="mb-8 text-2xl" style={{ opacity: 0.8 }}>
+              <h2 className="mb-6" style={{ color: 'white' }}>The Power of <span style={{ color: 'var(--primary)' }}>IoT Smart Meters</span></h2>
+              <p className="mb-8 text-2xl" style={{ color: 'white', opacity: 0.9 }}>
                 Our revolutionary Smart IoT Meter is the brain of your Okoa Gas kit. It monitors flow, pressure, and gas levels in real-time, ensuring you never run out of gas unexpectedly.
               </p>
               <ul className="flex flex-col gap-6" style={{ listStyle: 'none' }}>
                 <li className="flex gap-4 items-center">
-                  <CheckCircle className="text-primary w-6 h-6" />
-                  <span className="text-2xl">Automated gas level alerts via SMS</span>
+                  <CheckCircle className="w-6 h-6" style={{ color: 'var(--primary)' }} />
+                  <span className="text-2xl" style={{ color: 'white' }}>Automated gas level alerts via SMS</span>
                 </li>
                 <li className="flex gap-4 items-center">
-                  <CheckCircle className="text-primary w-6 h-6" />
-                  <span className="text-2xl">Precision billing (per gram of gas)</span>
+                  <CheckCircle className="w-6 h-6" style={{ color: 'var(--primary)' }} />
+                  <span className="text-2xl" style={{ color: 'white' }}>Precision billing (per gram of gas)</span>
                 </li>
                 <li className="flex gap-4 items-center">
-                  <CheckCircle className="text-primary w-6 h-6" />
-                  <span className="text-2xl">Anti-tamper security sensors</span>
+                  <CheckCircle className="w-6 h-6" style={{ color: 'var(--primary)' }} />
+                  <span className="text-2xl" style={{ color: 'white' }}>Anti-tamper security sensors</span>
                 </li>
               </ul>
             </motion.div>
@@ -220,7 +220,7 @@ const Home = () => {
       </section>
 
       {/* Zero Upfront Section */}
-      <section className="section" style={{ backgroundColor: 'var(--primary)', color: 'white', overflow: 'hidden' }}>
+      <section className="section" style={{ backgroundColor: '#064e3b', color: 'white', overflow: 'hidden' }}>
         <div className="container">
           <div className="grid md:grid-cols-2 gap-20 items-center">
             <motion.div
@@ -228,8 +228,8 @@ const Home = () => {
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
             >
-              <h2 className="mb-6" style={{ color: 'white', fontSize: '3.5rem' }}>Zero <span style={{ opacity: 0.8 }}>Upfront Cost</span> Promise</h2>
-              <p className="mb-12 text-2xl" style={{ opacity: 0.9 }}>
+              <h2 className="mb-6" style={{ color: 'white', fontSize: '3.5rem' }}>Zero <span style={{ color: 'var(--primary)' }}>Upfront Cost</span> Promise</h2>
+              <p className="mb-12 text-2xl" style={{ opacity: 1 }}>
                 We believe clean energy should be accessible to everyone. That's why we offer our Smart IoT Kit with zero upfront cost. You only pay for the gas you use, as you use it.
               </p>
               <div className="flex flex-col gap-6">
@@ -240,10 +240,10 @@ const Home = () => {
                   'Pay as little as Ksh 10 worth of gas'
                 ].map((item, idx) => (
                   <div key={idx} className="flex gap-4 items-center">
-                    <div style={{ background: 'rgba(255,255,255,0.2)', padding: '6px', borderRadius: '50%' }}>
-                      <CheckCircle className="w-6 h-6 text-white" />
+                    <div style={{ background: 'rgba(255,255,255,0.1)', padding: '6px', borderRadius: '50%' }}>
+                      <CheckCircle className="w-6 h-6" style={{ color: 'var(--primary)' }} />
                     </div>
-                    <span className="text-2xl" style={{ fontWeight: '600' }}>{item}</span>
+                    <span className="text-2xl" style={{ fontWeight: '600', color: 'white' }}>{item}</span>
                   </div>
                 ))}
               </div>

@@ -15,7 +15,8 @@ const CarbonCredits = () => {
   return (
     <div className="fade-in pt-20">
       {/* Hero Section */}
-      <section className="section bg-primary text-white text-center" style={{ padding: '120px 0' }}>
+      <section className="section text-white text-center" style={{ padding: '120px 0', backgroundColor: '#065f46' }}>
+
         <div className="container">
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
