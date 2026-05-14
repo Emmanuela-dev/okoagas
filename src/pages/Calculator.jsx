@@ -36,38 +36,38 @@ const Calculator = () => {
   }, [fuelType, monthlySpend]);
 
   return (
-    <div className="fade-in" style={{ paddingTop: '100px', minHeight: '100vh' }}>
+    <div className="fade-in pt-20" style={{ minHeight: '100vh' }}>
       <section className="section">
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <div className="text-center mb-20">
             <motion.div
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
             >
-              <h1 style={{ marginBottom: '1rem' }}>Impact <span className="text-primary">Calculator</span></h1>
-              <p className="text-muted" style={{ maxWidth: '600px', margin: '0 auto' }}>
+              <h1 className="mb-4">Impact <span className="text-primary">Calculator</span></h1>
+              <p className="text-muted text-2xl mx-auto max-w-2xl">
                 Calculate how much you can contribute to a cleaner environment by switching from traditional fuels to Okoa Gas.
               </p>
             </motion.div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="grid lg:grid-cols-2 gap-20 items-start">
             {/* Input Form */}
             <motion.div 
               initial={{ x: -30, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               className="glass" 
-              style={{ padding: '40px', borderRadius: '24px' }}
+              style={{ padding: '60px', borderRadius: '40px' }}
             >
-              <div style={{ marginBottom: '2rem' }}>
-                <label style={{ display: 'block', marginBottom: '1rem', fontWeight: 'bold' }}>What fuel do you currently use?</label>
-                <div className="grid grid-cols-3 gap-4">
+              <div className="mb-12">
+                <label className="block mb-6 font-bold text-2xl">What fuel do you currently use?</label>
+                <div className="grid grid-cols-3 gap-6">
                   {['charcoal', 'wood', 'kerosene'].map(type => (
                     <button
                       key={type}
                       onClick={() => setFuelType(type)}
                       className={fuelType === type ? 'btn-primary' : 'btn-secondary'}
-                      style={{ textTransform: 'capitalize', padding: '12px' }}
+                      style={{ textTransform: 'capitalize', padding: '16px', borderRadius: '16px' }}
                     >
                       {type}
                     </button>
@@ -75,8 +75,8 @@ const Calculator = () => {
                 </div>
               </div>
 
-              <div style={{ marginBottom: '2rem' }}>
-                <label style={{ display: 'block', marginBottom: '1rem', fontWeight: 'bold' }}>
+              <div className="mb-12">
+                <label className="block mb-6 font-bold text-2xl">
                   Monthly spend on {fuelType} (KES): <span className="text-primary">{monthlySpend}</span>
                 </label>
                 <input 
@@ -86,17 +86,17 @@ const Calculator = () => {
                   step="100"
                   value={monthlySpend}
                   onChange={(e) => setMonthlySpend(parseInt(e.target.value))}
-                  style={{ width: '100%', accentColor: 'var(--primary)' }}
+                  style={{ width: '100%', accentColor: 'var(--primary)', height: '12px' }}
                 />
-                <div className="flex justify-between text-muted" style={{ fontSize: '0.8rem', marginTop: '0.5rem' }}>
+                <div className="flex justify-between text-muted mt-4" style={{ fontSize: '0.9rem', fontWeight: '600' }}>
                   <span>500</span>
                   <span>10,000+</span>
                 </div>
               </div>
 
-              <div style={{ padding: '20px', background: 'var(--background)', borderRadius: '12px', border: '1px solid var(--border)' }}>
-                <p style={{ fontSize: '0.9rem', color: 'var(--secondary)', fontWeight: '600' }}>
-                  <RefreshCcw className="w-4 h-4 inline mr-2" />
+              <div style={{ padding: '32px', background: 'var(--background)', borderRadius: '20px', border: '1px solid var(--border)' }}>
+                <p className="mb-0" style={{ fontSize: '1rem', color: 'var(--secondary)', fontWeight: '600' }}>
+                  <RefreshCcw className="w-5 h-5 inline mr-3 animate-spin-slow" />
                   Calculations are based on average household energy consumption data in Kenya.
                 </p>
               </div>
@@ -106,52 +106,52 @@ const Calculator = () => {
             <motion.div
               initial={{ x: 30, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              className="flex flex-col gap-6"
+              className="flex flex-col gap-8"
             >
-              <div style={{ background: 'var(--secondary)', color: 'white', padding: '40px', borderRadius: '24px' }}>
-                <h3 style={{ color: 'white', marginBottom: '2rem' }}>Your Annual Impact</h3>
+              <div style={{ background: 'var(--secondary)', color: 'white', padding: '60px', borderRadius: '40px', boxShadow: '0 30px 60px -12px rgba(0,0,0,0.2)' }}>
+                <h3 className="mb-12" style={{ color: 'white', fontSize: '2rem' }}>Your Annual Impact</h3>
                 
-                <div className="flex flex-col gap-8">
-                  <div className="flex items-center gap-6">
-                    <div style={{ width: '60px', height: '60px', borderRadius: '15px', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'center' }}>
-                      <Wind className="text-primary w-8 h-8" />
+                <div className="flex flex-col gap-10">
+                  <div className="flex items-center gap-8">
+                    <div style={{ width: '80px', height: '80px', borderRadius: '24px', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Wind className="text-primary w-10 h-10" />
                     </div>
                     <div>
-                      <h4 style={{ color: 'white', fontSize: '1.5rem' }}>{results.co2Saved} Tonnes</h4>
-                      <p style={{ opacity: 0.7 }}>CO2 Emissions Avoided</p>
+                      <h4 className="text-white mb-1" style={{ fontSize: '2rem' }}>{results.co2Saved} Tonnes</h4>
+                      <p className="mb-0" style={{ opacity: 0.7, fontSize: '1.1rem' }}>CO2 Emissions Avoided</p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-6">
-                    <div style={{ width: '60px', height: '60px', borderRadius: '15px', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'center' }}>
-                      <Trees className="text-primary w-8 h-8" />
+                  <div className="flex items-center gap-8">
+                    <div style={{ width: '80px', height: '80px', borderRadius: '24px', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Trees className="text-primary w-10 h-10" />
                     </div>
                     <div>
-                      <h4 style={{ color: 'white', fontSize: '1.5rem' }}>{results.treesSaved} Trees</h4>
-                      <p style={{ opacity: 0.7 }}>Equivalent Forest Saved</p>
+                      <h4 className="text-white mb-1" style={{ fontSize: '2rem' }}>{results.treesSaved} Trees</h4>
+                      <p className="mb-0" style={{ opacity: 0.7, fontSize: '1.1rem' }}>Equivalent Forest Saved</p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-6">
-                    <div style={{ width: '60px', height: '60px', borderRadius: '15px', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'center' }}>
-                      <CreditCard className="text-primary w-8 h-8" />
+                  <div className="flex items-center gap-8">
+                    <div style={{ width: '80px', height: '80px', borderRadius: '24px', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <CreditCard className="text-primary w-10 h-10" />
                     </div>
                     <div>
-                      <h4 style={{ color: 'white', fontSize: '1.5rem' }}>KES {results.creditsEarned}</h4>
-                      <p style={{ opacity: 0.7 }}>Potential Carbon Credit Value</p>
+                      <h4 className="text-white mb-1" style={{ fontSize: '2rem' }}>KES {results.creditsEarned}</h4>
+                      <p className="mb-0" style={{ opacity: 0.7, fontSize: '1.1rem' }}>Potential Carbon Credit Value</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="glass" style={{ padding: '30px', borderRadius: '24px' }}>
-                <h4 style={{ marginBottom: '1rem' }}>Take the Next Step</h4>
-                <p className="text-muted" style={{ marginBottom: '1.5rem' }}>
+              <div className="glass" style={{ padding: '48px', borderRadius: '40px' }}>
+                <h4 className="mb-4" style={{ fontSize: '1.5rem' }}>Take the Next Step</h4>
+                <p className="text-muted text-xl mb-8">
                   Start your journey to clean energy today and start earning credits.
                 </p>
-                <a href="/get-kit" className="btn-primary w-full justify-center">
-                  Get Your Kit Now <ArrowRight className="w-5 h-5 ml-2" />
-                </a>
+                <Link to="/get-kit" className="btn-primary w-full justify-center" style={{ padding: '20px' }}>
+                  Get Your Kit Now <ArrowRight className="w-6 h-6 ml-3" />
+                </Link>
               </div>
             </motion.div>
           </div>
