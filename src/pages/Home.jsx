@@ -217,51 +217,151 @@ const Home = () => {
         </div>
       </section>
 
-      {/* How it Works Section */}
-      <section id="how-it-works" className="section">
-
+      {/* Zero Upfront Section */}
+      <section className="section" style={{ backgroundColor: 'var(--primary)', color: 'white', overflow: 'hidden' }}>
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 style={{ marginBottom: '2rem' }}>How to get started</h2>
-              <div className="flex flex-col gap-8">
+            <motion.div
+              initial={{ x: -50, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+            >
+              <h2 style={{ color: 'white', marginBottom: '1.5rem', fontSize: '3rem' }}>Zero <span style={{ opacity: 0.8 }}>Upfront Cost</span> Promise</h2>
+              <p style={{ fontSize: '1.2rem', opacity: 0.9, marginBottom: '2rem' }}>
+                We believe clean energy should be accessible to everyone. That's why we offer our Smart IoT Kit with zero upfront cost. You only pay for the gas you use, as you use it.
+              </p>
+              <div className="flex flex-col gap-4">
                 {[
-                  { step: '01', title: 'Order Your Kit', desc: 'Select your preferred gas kit and provide your delivery details.' },
-                  { step: '02', title: 'Make Payment', desc: 'Pay securely via M-Pesa with our instant STK push integration.' },
-                  { step: '03', title: 'We Deliver & Install', desc: 'Our experts will deliver and professionally install the kit for you.' }
-                ].map((step, idx) => (
-                  <div key={idx} className="flex gap-6">
-                    <div style={{ 
-                      minWidth: '50px', 
-                      height: '50px', 
-                      borderRadius: '50%', 
-                      background: 'var(--primary)', 
-                      color: 'white', 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      justifyContent: 'center',
-                      fontWeight: 'bold'
-                    }}>
-                      {step.step}
+                  'No installation fees',
+                  'Free maintenance for life',
+                  'No deposit required for the cylinder',
+                  'Pay as little as Ksh 10 worth of gas'
+                ].map((item, idx) => (
+                  <div key={idx} className="flex gap-3 items-center">
+                    <div style={{ background: 'rgba(255,255,255,0.2)', padding: '4px', borderRadius: '50%' }}>
+                      <CheckCircle className="w-5 h-5 text-white" />
                     </div>
-                    <div>
-                      <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>{step.title}</h3>
-                      <p className="text-muted">{step.desc}</p>
-                    </div>
+                    <span style={{ fontWeight: '600' }}>{item}</span>
                   </div>
                 ))}
               </div>
-            </div>
-            <div className="glass" style={{ padding: '40px', borderRadius: '24px' }}>
-              <h3 style={{ marginBottom: '1.5rem' }}>Check Availability</h3>
-              <div className="flex flex-col gap-4">
-                <input type="text" placeholder="Enter your neighborhood (e.g. Kilimani)" />
-                <button className="btn-primary w-full justify-center">Check Now</button>
-                <div className="flex items-center gap-2 text-primary" style={{ marginTop: '1rem' }}>
-                  <CheckCircle className="w-5 h-5" />
-                  <span style={{ fontSize: '0.9rem', fontWeight: '600' }}>Available in most parts of Nairobi</span>
+            </motion.div>
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              style={{ position: 'relative' }}
+            >
+              <div className="glass" style={{ padding: '40px', borderRadius: '32px', textAlign: 'center', border: '1px solid rgba(255,255,255,0.2)' }}>
+                <Zap className="w-16 h-16 mx-auto mb-6 text-white" />
+                <h3 style={{ color: 'white', marginBottom: '1rem' }}>Instant Activation</h3>
+                <p style={{ color: 'white', opacity: 0.8 }}>Your kit is activated the moment you make your first gas purchase via M-Pesa.</p>
+              </div>
+              {/* Decorative elements */}
+              <div style={{ position: 'absolute', top: '-20px', right: '-20px', width: '100px', height: '100px', background: 'rgba(255,255,255,0.1)', borderRadius: '50%', filter: 'blur(20px)' }}></div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* How it Works Section */}
+      <section id="how-it-works" className="section">
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h2 style={{ marginBottom: '1rem' }}>How to get <span className="text-primary">Started</span></h2>
+            <p className="text-muted">Three simple steps to transition your kitchen to clean energy.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-12 items-center">
+            {[
+              { step: '01', title: 'Order Your Kit', desc: 'Select your preferred gas kit size and provide your delivery details.' },
+              { step: '02', title: 'Free Installation', desc: 'Our team will deliver and install the smart kit at your home for free.' },
+              { step: '03', title: 'Pay & Cook', desc: 'Top up your gas balance via M-Pesa and start cooking immediately.' }
+            ].map((step, idx) => (
+              <div key={idx} className="flex flex-col items-center text-center gap-6">
+                <div style={{ 
+                  width: '60px', 
+                  height: '60px', 
+                  borderRadius: '18px', 
+                  background: 'var(--primary)', 
+                  color: 'white', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  fontWeight: 'bold',
+                  fontSize: '1.2rem',
+                  boxShadow: '0 10px 20px rgba(13, 148, 136, 0.2)'
+                }}>
+                  {step.step}
+                </div>
+                <div>
+                  <h3 style={{ fontSize: '1.4rem', marginBottom: '0.75rem' }}>{step.title}</h3>
+                  <p className="text-muted">{step.desc}</p>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="section" style={{ background: 'var(--background)' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h2 style={{ marginBottom: '1rem' }}>Voice of the <span className="text-primary">Community</span></h2>
+            <p className="text-muted">Join over 10,000 families who have switched to Okoa Gas.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { name: 'Sarah Wanjiku', role: 'Business Owner', quote: 'The pay-as-you-cook feature has helped me manage my kitchen budget so much better. No more unexpected gas refills!' },
+              { name: 'David Omari', role: 'Teacher', quote: 'Safety was my main concern with gas, but the smart leak detection sensor gives me total peace of mind.' },
+              { name: 'Mary Atieno', role: 'Home Maker', quote: 'The installation was quick and professional. I love that I didn\'t have to pay anything upfront for the kit.' }
+            ].map((t, idx) => (
+              <div key={idx} className="glass" style={{ padding: '30px', borderRadius: '20px' }}>
+                <p className="text-muted" style={{ fontStyle: 'italic', marginBottom: '1.5rem' }}>"{t.quote}"</p>
+                <div>
+                  <p className="font-bold">{t.name}</p>
+                  <p className="text-muted" style={{ fontSize: '0.8rem' }}>{t.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="section">
+        <div className="container">
+          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <h2 style={{ textAlign: 'center', marginBottom: '3rem' }}>Frequently Asked <span className="text-primary">Questions</span></h2>
+            <div className="flex flex-col gap-6">
+              {[
+                { q: 'Is there really zero upfront cost?', a: 'Yes! We provide the smart cylinder and IoT meter with no initial purchase price. You only pay for the gas consumed.' },
+                { q: 'How do I pay for gas?', a: 'You can top up your balance via M-Pesa. Simply go to the "Pay & Cook" section or follow the SMS instructions sent to you.' },
+                { q: 'What happens if there is a gas leak?', a: 'Our smart sensor will automatically shut off the valve and send an instant alert to your phone and our command center.' },
+                { q: 'Where do you deliver?', a: 'Currently, we serve all major neighborhoods in Nairobi. We are expanding to other counties soon!' }
+              ].map((faq, idx) => (
+                <div key={idx} style={{ padding: '24px', borderBottom: '1px solid var(--border)' }}>
+                  <h4 style={{ marginBottom: '1rem' }}>{faq.q}</h4>
+                  <p className="text-muted">{faq.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Availability Check */}
+      <section className="section py-5">
+        <div className="container">
+          <div className="glass" style={{ padding: '60px', borderRadius: '32px', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
+            <h3 style={{ marginBottom: '1.5rem' }}>Check Availability in Your Area</h3>
+            <div className="flex flex-col md:flex-row gap-4 justify-center">
+              <input type="text" placeholder="Enter your neighborhood (e.g. Kilimani)" style={{ maxWidth: '400px' }} />
+              <button className="btn-primary">Check Now</button>
+            </div>
+            <div className="flex items-center gap-2 text-primary justify-center" style={{ marginTop: '1.5rem' }}>
+              <CheckCircle className="w-5 h-5" />
+              <span style={{ fontSize: '0.9rem', fontWeight: '600' }}>Available in most parts of Nairobi</span>
             </div>
           </div>
         </div>
@@ -271,3 +371,4 @@ const Home = () => {
 };
 
 export default Home;
+

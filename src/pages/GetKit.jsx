@@ -22,7 +22,7 @@ const GetKit = () => {
   const handleMpesaPayment = async () => {
     setLoading(true);
     try {
-      const amount = formData.kitSize === '6kg' ? 4500 : 7500;
+      const amount = formData.kitSize === '6kg' ? 500 : 1000;
       const response = await fetch('/api/stk-push', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -185,8 +185,8 @@ const GetKit = () => {
                     <h2 style={{ marginBottom: '1.5rem' }}>Select Your Kit</h2>
                     <div className="flex flex-col gap-4">
                       {[
-                        { id: '6kg', name: 'Starter Kit (6kg)', price: 'Ksh 4,500' },
-                        { id: '13kg', name: 'Family Kit (13kg)', price: 'Ksh 7,500' }
+                        { id: '6kg', name: '6kg Starter Kit', price: 'Ksh 0 Upfront', sub: 'Pay only for gas consumed' },
+                        { id: '13kg', name: '13kg Family Kit', price: 'Ksh 0 Upfront', sub: 'Pay only for gas consumed' }
                       ].map(kit => (
                         <div 
                           key={kit.id}
@@ -197,14 +197,14 @@ const GetKit = () => {
                             border: `2px solid ${formData.kitSize === kit.id ? 'var(--primary)' : '#e2e8f0'}`,
                             cursor: 'pointer',
                             display: 'flex',
-                            justifyContent: 'between',
+                            justifyContent: 'space-between',
                             alignItems: 'center',
                             background: formData.kitSize === kit.id ? '#f0fdfa' : 'white'
                           }}
                         >
                           <div>
                             <p style={{ fontWeight: '700' }}>{kit.name}</p>
-                            <p className="text-muted" style={{ fontSize: '0.9rem' }}>Includes full cylinder, regulator, and hose.</p>
+                            <p className="text-muted" style={{ fontSize: '0.9rem' }}>{kit.sub}</p>
                           </div>
                           <span style={{ fontWeight: '800', color: 'var(--primary)' }}>{kit.price}</span>
                         </div>
@@ -221,13 +221,20 @@ const GetKit = () => {
                     </p>
                     <div className="glass" style={{ padding: '20px', borderRadius: '16px', marginBottom: '2rem', textAlign: 'left' }}>
                       <div className="flex justify-between" style={{ marginBottom: '0.5rem' }}>
-                        <span>Kit Selection:</span>
-                        <span style={{ fontWeight: '700' }}>{formData.kitSize === '6kg' ? '6kg Starter' : '13kg Family'}</span>
+                        <span>Hardware Cost:</span>
+                        <span style={{ fontWeight: '700', color: 'var(--primary)' }}>FREE (Zero Upfront)</span>
+                      </div>
+                      <div className="flex justify-between" style={{ marginBottom: '0.5rem' }}>
+                        <span>Installation & Setup:</span>
+                        <span style={{ fontWeight: '700', color: 'var(--primary)' }}>FREE</span>
                       </div>
                       <div className="flex justify-between" style={{ borderTop: '1px solid #e2e8f0', paddingTop: '0.5rem', marginTop: '0.5rem' }}>
-                        <span style={{ fontWeight: '700' }}>Total Amount:</span>
+                        <div className="flex flex-col">
+                          <span style={{ fontWeight: '700' }}>Initial Gas Credit:</span>
+                          <span style={{ fontSize: '0.7rem', opacity: 0.6 }}>Loaded directly to your meter</span>
+                        </div>
                         <span style={{ fontWeight: '900', color: 'var(--primary)', fontSize: '1.2rem' }}>
-                          Ksh {formData.kitSize === '6kg' ? '4,500' : '7,500'}
+                          Ksh {formData.kitSize === '6kg' ? '500' : '1,000'}
                         </span>
                       </div>
                     </div>
