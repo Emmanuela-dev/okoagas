@@ -176,12 +176,12 @@ const Home = () => {
                   alt="Green Forest" 
                   style={{ borderRadius: '32px', width: '100%', height: '500px', objectFit: 'cover', boxShadow: '0 30px 60px -12px rgba(0,0,0,0.15)' }}
                 />
-                <div className="glass" style={{ position: 'absolute', bottom: '30px', right: '30px', padding: '30px', borderRadius: '20px', maxWidth: '300px' }}>
-                  <div className="flex items-center gap-3 mb-3">
-                    <Leaf className="text-primary w-8 h-8" />
-                    <span className="font-bold text-2xl">2.5 Tons Saved</span>
+                <div className="glass" style={{ position: 'absolute', bottom: '20px', right: '20px', padding: '20px', borderRadius: '16px', maxWidth: '240px' }}>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Leaf className="text-primary w-6 h-6" />
+                    <span className="font-bold text-xl">2.5 Tons Saved</span>
                   </div>
-                  <p className="mb-0 text-muted" style={{ fontSize: '0.9rem' }}>Average CO2 reduction per family annually.</p>
+                  <p className="mb-0 text-muted" style={{ fontSize: '0.8rem' }}>Average CO2 reduction per family annually.</p>
                 </div>
               </div>
             </motion.div>

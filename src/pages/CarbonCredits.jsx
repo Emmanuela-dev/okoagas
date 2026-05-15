@@ -34,18 +34,18 @@ const CarbonCredits = () => {
       </section>
 
       {/* Impact Stats */}
-      <section className="section">
+      <section className="section-sm">
         <div className="container">
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-3 gap-6">
             {[
-              { icon: <Globe className="text-primary w-12 h-12" />, value: '2.5 Tonnes', label: 'CO2 Saved per Household/Year' },
-              { icon: <TrendingUp className="text-primary w-12 h-12" />, value: '15,000+', label: 'Total Credits Generated' },
-              { icon: <Award className="text-primary w-12 h-12" />, value: 'Gold Standard', label: 'Certified Methodology' }
+              { icon: <Globe className="text-primary w-10 h-10" />, value: '2.5 Tonnes', label: 'CO2 Saved per Household/Year' },
+              { icon: <TrendingUp className="text-primary w-10 h-10" />, value: '15,000+', label: 'Total Credits Generated' },
+              { icon: <Award className="text-primary w-10 h-10" />, value: 'Gold Standard', label: 'Certified Methodology' }
             ].map((stat, idx) => (
-              <div key={idx} className="glass" style={{ padding: '48px', textAlign: 'center', borderRadius: '32px' }}>
-                <div className="mb-6 flex justify-center">{stat.icon}</div>
-                <h2 className="mb-2" style={{ fontSize: '2.5rem' }}>{stat.value}</h2>
-                <p className="text-muted mb-0 font-bold">{stat.label}</p>
+              <div key={idx} className="glass" style={{ padding: '32px', textAlign: 'center', borderRadius: '24px' }}>
+                <div className="mb-4 flex justify-center">{stat.icon}</div>
+                <h2 className="mb-1" style={{ fontSize: '2rem' }}>{stat.value}</h2>
+                <p className="text-muted mb-0" style={{ fontSize: '0.9rem', fontWeight: '700' }}>{stat.label}</p>
               </div>
             ))}
           </div>
