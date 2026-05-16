@@ -65,11 +65,11 @@ input:focus {
 }
 
 .section {
-  padding: 120px 0;
+  padding: 40px 0;
 }
 
 .section-sm {
-  padding: 60px 0;
+  padding: 30px 0;
 }
 
 .btn-primary {
@@ -112,7 +112,7 @@ h3 { font-size: 1.75rem; }
 @media (max-width: 768px) {
   h1 { font-size: 3rem; }
   h2 { font-size: 2.25rem; }
-  .section { padding: 80px 0; }
+  .section { padding: 30px 0; }
 }
 
 p {
@@ -134,9 +134,9 @@ p {
 .pb-20 { padding-bottom: 80px; }
 
 /* Grid Gap Improvements */
-.gap-12 { gap: 48px; }
-.gap-16 { gap: 64px; }
-.gap-20 { gap: 80px; }
+.gap-12 { gap: 16px; }
+.gap-16 { gap: 24px; }
+.gap-20 { gap: 32px; }
 
 /* Better Buttons */
 .btn-primary, .btn-secondary {

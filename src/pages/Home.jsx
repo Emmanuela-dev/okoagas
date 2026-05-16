@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <PageWrapper>
       {/* Hero */}
-      <section className="section flex items-center min-h-[90vh]" style={{ paddingTop: '160px' }}>
+      <section className="section flex items-center min-h-[60vh]" style={{ paddingTop: '20px' }}>
         <div className="container">
           <motion.div
             variants={stagger}
@@ -30,15 +30,15 @@ const Home = () => {
             <motion.span variants={fadeUp} className="text-primary font-bold uppercase tracking-widest mb-6 block" style={{ fontSize: '0.9rem' }}>
               Clean Cooking for Every Home
             </motion.span>
-            <motion.h1 variants={fadeUp} className="mb-8">Switch to <span className="text-primary">Clean Energy</span> with OKOA GAS</motion.h1>
-            <motion.p variants={fadeUp} className="text-muted text-2xl mb-12">
+            <motion.h1 variants={fadeUp} className="mb-6">Switch to <span className="text-primary">Clean Energy</span> with OKOA GAS</motion.h1>
+            <motion.p variants={fadeUp} className="text-muted text-2xl mb-8">
               Safe, affordable, and reliable LPG cooking gas delivered to your doorstep. Join thousands of Kenyan homes making the switch today.
             </motion.p>
             <motion.div variants={fadeUp} className="flex gap-6 justify-center">
               <Link to="/get-kit" className="btn-primary">Order Your Kit <ArrowRight className="w-5 h-5" /></Link>
               <a href="#how-it-works" className="btn-secondary">How it Works</a>
             </motion.div>
-            <motion.div variants={fadeUp} className="flex items-center gap-4 justify-center mt-16">
+            <motion.div variants={fadeUp} className="flex items-center gap-4 justify-center mt-12">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4, 5].map(i => (
                   <div key={i} style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#e2e8f0', border: '3px solid white' }} />
@@ -53,7 +53,7 @@ const Home = () => {
       {/* Features */}
       <section id="features" className="section bg-white">
         <div className="container">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="text-center mb-20 max-w-xl mx-auto">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="text-center mb-12 max-w-xl mx-auto">
             <h2 className="mb-4">Smart Cooking <span className="text-primary">Technology</span></h2>
             <p className="text-muted">We've integrated advanced IoT and safety features to give you a seamless and secure cooking experience.</p>
           </motion.div>
@@ -76,7 +76,7 @@ const Home = () => {
       {/* IoT Section */}
       <section className="section" style={{ background: 'var(--secondary)', color: 'white' }}>
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-20 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div variants={slideLeft} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
               <h2 className="mb-6" style={{ color: 'white' }}>The Power of <span style={{ color: 'var(--primary)' }}>IoT Smart Meters</span></h2>
               <p className="mb-8 text-2xl" style={{ color: 'white', opacity: 0.9 }}>
@@ -106,7 +106,7 @@ const Home = () => {
       {/* Carbon Credits Promo */}
       <section className="section" style={{ background: '#f8fafc' }}>
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-20 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div variants={slideLeft} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
               <div style={{ position: 'relative' }}>
                 <img
@@ -151,7 +151,7 @@ const Home = () => {
       {/* Zero Upfront */}
       <section className="section" style={{ backgroundColor: '#064e3b', color: 'white', overflow: 'hidden' }}>
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-20 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div variants={slideLeft} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
               <h2 className="mb-6" style={{ color: 'white', fontSize: '3.5rem' }}>Zero <span style={{ color: 'var(--primary)' }}>Upfront Cost</span> Promise</h2>
               <p className="mb-12 text-2xl">We believe clean energy should be accessible to everyone. That's why we offer our Smart IoT Kit with zero upfront cost.</p>
@@ -181,7 +181,7 @@ const Home = () => {
       {/* How it Works */}
       <section id="how-it-works" className="section">
         <div className="container">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="text-center mb-20 max-w-2xl mx-auto">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="text-center mb-12 max-w-2xl mx-auto">
             <h2 className="mb-4">How to get <span className="text-primary">Started</span></h2>
             <p className="text-muted">Three simple steps to transition your kitchen to clean energy.</p>
           </motion.div>
@@ -208,7 +208,7 @@ const Home = () => {
       {/* Testimonials */}
       <section className="section bg-white">
         <div className="container">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="text-center mb-20 max-w-2xl mx-auto">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="text-center mb-12 max-w-2xl mx-auto">
             <h2 className="mb-4">Voice of the <span className="text-primary">Community</span></h2>
             <p className="text-muted">Join over 10,000 families who have switched to Okoa Gas.</p>
           </motion.div>
