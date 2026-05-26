@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useInView, useSpring, useTransform, AnimatePresence } from 'framer-motion';
-import { Shield, Zap, Leaf, ArrowRight, CheckCircle, Plus, Minus, ChevronDown } from 'lucide-react';
+import { Shield, Zap, Leaf, ArrowRight, CheckCircle, Plus, Minus, ChevronDown, Check } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import PageWrapper, { fadeUp, fadeIn, slideLeft, stagger, Reveal } from '../components/PageWrapper';
 
@@ -61,9 +61,9 @@ const FAQSection = () => {
   
   const faqs = {
     'General': [
-      { q: 'Is there really zero upfront cost?', a: 'Yes! We provide the smart cylinder and IoT meter with no initial purchase price. You only pay for the gas consumed.' },
+      { q: 'Is there an upfront cost?', a: 'Our Smart IoT Kit requires only 10% upfront payment, with the remaining balance paid as you consume gas. This makes clean energy affordable for every household.' },
       { q: 'Who is eligible for Okoa Gas?', a: 'Any household in our delivery areas can apply. We aim to reach everyone from apartment dwellers to those in independent houses.' },
-      { q: 'What is the "Zero Upfront Cost" promise?', a: 'It means you don\'t pay for the hardware (cylinder, meter, regulator) at the start. You only buy gas credits to start cooking.' }
+      { q: 'What is the "Zero Upfront Cost" promise?', a: 'It means you pay only 10% of the hardware cost upfront, with the remaining balance paid as you consume gas. You only buy gas credits to start cooking.' }
     ],
     'Technology & Safety': [
       { q: 'What happens if there is a gas leak?', a: 'Our smart sensor will automatically shut off the valve and send an instant alert to your phone and our command center.' },
@@ -72,7 +72,7 @@ const FAQSection = () => {
     ],
     'Payments & Credit': [
       { q: 'How do I pay for gas?', a: 'You can top up your balance via M-Pesa. Simply go to the "Pay & Cook" section or follow the SMS instructions sent to you.' },
-      { q: 'What is the minimum amount I can spend?', a: 'You can buy gas for as little as Ksh 10 worth. We believe in total financial flexibility.' },
+      { q: 'What is the minimum amount I can spend?', a: 'You can buy gas for as little as Ksh 100 worth. We believe in total financial flexibility.' },
       { q: 'How do I earn carbon credits?', a: 'By simply using Okoa Gas instead of charcoal or wood, you earn "Green Points" that can be redeemed for gas discounts.' }
     ],
     'Delivery': [
@@ -227,41 +227,88 @@ const Home = () => {
                 <p className="text-muted mb-0" style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>{feature.desc}</p>
               </motion.div>
             ))}
-          </motion.div>
+</motion.div>
+          </div>
         </div>
       </section>
 
-      {/* IoT Section */}
-      <section className="section" style={{ background: 'var(--secondary)', color: 'white' }}>
+      {/* Payment & Credits Section */}
+      <section id="payment-credits" className="section bg-white">
         <div className="container">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
-              <Reveal width="100%">
-                <h2 className="mb-8" style={{ color: 'white', fontSize: '3.5rem' }}>The Power of <span style={{ color: 'var(--primary)' }}>IoT Smart Meters</span></h2>
-              </Reveal>
-              <p className="mb-12 text-2xl mx-auto max-w-3xl" style={{ color: 'white', opacity: 0.9, lineHeight: '1.8' }}>
-                Our revolutionary Smart IoT Meter is the brain of your Okoa Gas kit. It monitors flow, pressure, and gas levels in real-time, ensuring you never run out of gas unexpectedly.
-              </p>
-              <div className="grid md:grid-cols-3 gap-12 mb-20">
-                {['Automated gas level alerts via SMS', 'Precision billing (per gram of gas)', 'Anti-tamper security sensors'].map((item, idx) => (
-                  <motion.div key={idx} variants={fadeUp} className="flex flex-col items-center gap-4">
-                    <div style={{ background: 'rgba(255,255,255,0.1)', padding: '16px', borderRadius: '50%' }}>
-                      <CheckCircle className="w-8 h-8" style={{ color: 'var(--primary)' }} />
-                    </div>
-                    <span className="text-xl font-bold" style={{ color: 'white' }}>{item}</span>
-                  </motion.div>
-                ))}
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="text-center mb-16 max-w-2xl mx-auto">
+            <Reveal width="100%">
+              <h2 className="mb-6" style={{ fontSize: '3.5rem' }}>Payment <span className="text-primary">& Credits</span></h2>
+            </Reveal>
+            <p className="text-xl text-muted" style={{ lineHeight: '1.8' }}>Choose your preferred payment method for gas top-ups and enjoy flexible payment options.</p>
+          </motion.div>
+          <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} className="grid md:grid-cols-2 gap-16 max-w-5xl mx-auto">
+            {/* M-PESA Payment Option */}
+            <motion.div variants={fadeUp} className="glass flex flex-col" style={{ padding: '50px', borderRadius: '32px', background: '#f0fdfa', border: '1px solid #ccfbf1' }}>
+              <div className="flex items-center gap-4 mb-8">
+                <div style={{ width: '70px', height: '70px', borderRadius: '20px', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" style={{ width: '36px', height: '36px' }}>
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93c-1.11.1-2.14-.79-2.24-1.89zM20.21 10.21c-.09.58-.21 1.16-.37 1.74l-2.11-5.17c1.41-.49 2.56-.27 3.06.21.54.47.65 1.2.44 2.22zM12 4c4.93 0 9 2.88 9 6.5s-4.07 6.5-9 6.5S3 15.43 3 12.5C3 9.57 6.36 8.1 9 7.1V4.07C7.11 4.57 4.21 6.4 4.21 8.93c0 2.91 2.4 5.43 5.79 5.93V19.93C5.36 19.1 2 16.57 2 12S5.36 4 12 4z"/>
+                  </svg>
+                </div>
+                <h3 className="mb-0" style={{ fontSize: '2rem', color: 'var(--secondary)' }}>M-PESA Payment</h3>
               </div>
+              <ul className="flex flex-col gap-4 mb-10">
+                <li className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
+                  <span style={{ fontSize: '1.1rem' }}>Click "Top Up M-PESA" button</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
+                  <span style={{ fontSize: '1.1rem' }}>Enter your M-PESA registered phone number</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
+                  <span style={{ fontSize: '1.1rem' }}>Enter amount (minimum KES 100)</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
+                  <span style={{ fontSize: '1.1rem' }}>You'll receive an STK Push on your phone</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
+                  <span style={{ fontSize: '1.1rem' }}>Enter your M-PESA PIN to complete payment</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
+                  <span style={{ fontSize: '1.1rem' }}>Gas balance updates instantly!</span>
+                </li>
+              </ul>
+              <Link to="/get-kit" className="btn-primary mt-auto" style={{ padding: '16px 32px', fontSize: '1.1rem', width: 'fit-content' }}>Top Up M-PESA</Link>
             </motion.div>
-            <motion.div variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="glass mx-auto" style={{ padding: '60px', borderRadius: '40px', border: '1px solid rgba(255,255,255,0.1)', maxWidth: '800px' }}>
-              <h3 className="mb-6" style={{ color: 'white', fontSize: '2rem' }}>24/7 Safety Monitoring</h3>
-              <p className="mb-8 text-lg" style={{ opacity: 0.8 }}>Your safety is our top priority. Our command center receives instant notifications if your sensor detects any irregularity.</p>
-              <div style={{ padding: '32px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px' }}>
-                <h4 className="mb-2 text-primary" style={{ fontSize: '1.4rem' }}>Safety Guarantee</h4>
-                <p className="mb-0" style={{ fontSize: '1.1rem', opacity: 0.8 }}>We provide free maintenance and regular safety inspections for all our IoT-connected kits.</p>
+
+            {/* Cash Payment Option */}
+            <motion.div variants={fadeUp} className="glass flex flex-col" style={{ padding: '50px', borderRadius: '32px', background: '#fef2f2', border: '1px solid #fecaca' }}>
+              <div className="flex items-center gap-4 mb-8">
+                <div style={{ width: '70px', height: '70px', borderRadius: '20px', background: 'var(--secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" style={{ width: '36px', height: '36px' }}>
+                    <path d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm1 16.5V12h2.5c.276 0 .5-.224.5-.5s-.224-.5-.5-.5H12V5.5c0-.276-.224-.5-.5-.5s-.5.224-.5.5V11H8c-.276 0-.5.224-.5.5s.224.5.5.5h2.5v5c0 .276.224.5.5.5s.5-.224.5-.5z"/>
+                  </svg>
+                </div>
+                <h3 className="mb-0" style={{ fontSize: '2rem', color: 'var(--secondary)' }}>Cash Payment</h3>
               </div>
+              <p className="text-muted mb-8 text-xl" style={{ lineHeight: '1.6' }}>Prefer to pay with cash? Our agents will collect payment upon delivery.</p>
+              <ul className="flex flex-col gap-4 mb-10">
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-6 h-6 text-secondary mt-0.5 flex-shrink-0" />
+                  <span style={{ fontSize: '1.1rem' }}>Pay cash on delivery</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-6 h-6 text-secondary mt-0.5 flex-shrink-0" />
+                  <span style={{ fontSize: '1.1rem' }}>No additional fees</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-6 h-6 text-secondary mt-0.5 flex-shrink-0" />
+                  <span style={{ fontSize: '1.1rem' }}>Available for all kits</span>
+                </li>
+              </ul>
+              <Link to="/get-kit" className="btn-secondary mt-auto" style={{ padding: '16px 32px', fontSize: '1.1rem', width: 'fit-content' }}>Order with Cash on Delivery</Link>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -331,11 +378,11 @@ const Home = () => {
           <div className="max-w-5xl mx-auto text-center">
             <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
               <Reveal width="100%">
-                <h2 className="mb-8" style={{ color: 'white', fontSize: '4rem', fontWeight: '900' }}>Zero <span style={{ color: 'var(--primary)' }}>Upfront Cost</span> Promise</h2>
+                <h2 className="mb-8" style={{ color: 'white', fontSize: '4rem', fontWeight: '900' }}>10% <span style={{ color: 'var(--primary)' }}>Upfront Cost</span> Promise</h2>
               </Reveal>
-              <p className="mb-16 text-2xl mx-auto max-w-3xl" style={{ lineHeight: '1.8' }}>We believe clean energy should be accessible to everyone. That's why we offer our Smart IoT Kit with zero upfront cost.</p>
+              <p className="mb-16 text-2xl mx-auto max-w-3xl" style={{ lineHeight: '1.8' }}>We believe clean energy should be accessible to everyone. That's why we offer our Smart IoT Kit with just 10% upfront cost.</p>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
-                {['No installation fees', 'Free maintenance for life', 'No deposit for cylinder', 'Pay as little as Ksh 10'].map((item, idx) => (
+                {['No installation fees', 'Free maintenance for life', 'No deposit for cylinder', 'Pay as little as Ksh 100'].map((item, idx) => (
                   <motion.div key={idx} variants={fadeUp} className="flex flex-col items-center gap-6 p-8 rounded-3xl" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
                     <div style={{ background: 'rgba(255,255,255,0.1)', padding: '12px', borderRadius: '50%' }}>
                       <CheckCircle className="w-8 h-8" style={{ color: 'var(--primary)' }} />
