@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { User, MapPin, Package, CreditCard, ChevronRight, ChevronLeft, Check, Loader2 } from 'lucide-react';
 import PageWrapper, { fadeUp, fadeIn } from '../components/PageWrapper';
 
+const COMPANY_WHATSAPP_NUMBER = import.meta.env.VITE_COMPANY_WHATSAPP_NUMBER || '254743800904';
+
 const GetKit = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -20,16 +22,43 @@ const GetKit = () => {
     setLoading(true);
     try {
       const amount = formData.kitSize === '6kg' ? 500 : 1000;
+      const orderDetails = {
+        name: formData.name,
+        phone: formData.phone,
+        county: formData.county,
+        area: formData.area,
+        houseNo: formData.houseNo,
+        kitSize: formData.kitSize,
+        accessories: formData.accessories,
+        amount,
+      };
       const response = await fetch('/api/stk-push', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          phone: formData.phone, amount,
-          accountReference: 'OKOA-' + formData.name.substring(0, 10).replace(/\s/g, '')
+          phone: formData.phone,
+          amount,
+          accountReference: `OKOA-${formData.name.substring(0, 10).replace(/\s/g, '')}`,
+          orderDetails,
         })
       });
       const data = await response.json();
-      if (data.ResponseCode === '0') setSuccess(true);
+      if (data.ResponseCode === '0') {
+        setSuccess(true);
+        const message = [
+          'New Okoa Gas order',
+          `Name: ${formData.name}`,
+          `Phone: ${formData.phone}`,
+          `Location: ${formData.area}, ${formData.county}`,
+          `House No: ${formData.houseNo}`,
+          `Kit: ${formData.kitSize}`,
+          `Accessories: ${formData.accessories.join(', ')}`,
+          `Amount: Ksh ${amount}`,
+        ].join('\n');
+
+        const whatsappUrl = `https://wa.me/${COMPANY_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      }
       else alert('Payment request failed: ' + (data.CustomerMessage || 'Unknown error'));
     } catch (error) {
       alert('An error occurred while processing payment. Please try again.');
@@ -179,6 +208,9 @@ const GetKit = () => {
                       <h2 className="mb-4">Complete Payment</h2>
                       <p className="text-muted text-xl mb-12">
                         Click below to receive an M-Pesa STK push on your phone <strong>{formData.phone}</strong>.
+                      </p>
+                      <p className="text-muted mb-8" style={{ fontSize: '1rem' }}>
+                        After payment, your order details will be sent to the company number for follow-up and installation.
                       </p>
                       <div className="glass mb-12" style={{ padding: '32px', borderRadius: '24px', textAlign: 'left', border: '1px solid var(--border)' }}>
                         <div className="flex justify-between mb-4">

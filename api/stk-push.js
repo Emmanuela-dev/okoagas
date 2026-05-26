@@ -3,7 +3,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const { phone, amount, accountReference } = req.body;
+  const { phone, amount, accountReference, orderDetails } = req.body;
 
   if (!phone || !amount) {
     return res.status(400).json({ message: 'Phone number and amount are required' });
@@ -66,6 +66,16 @@ export default async function handler(req, res) {
 
     const password = Buffer.from(`${shortCode}${passkey}${timestamp}`).toString('base64');
 
+    const transactionDescription = orderDetails
+      ? [
+          'Kit Purchase',
+          orderDetails.name ? `Name: ${orderDetails.name}` : null,
+          orderDetails.area ? `Area: ${orderDetails.area}` : null,
+          orderDetails.houseNo ? `House: ${orderDetails.houseNo}` : null,
+          orderDetails.kitSize ? `Kit: ${orderDetails.kitSize}` : null,
+        ].filter(Boolean).join(' | ')
+      : 'Kit Purchase';
+
     const stkResponse = await fetch(`${baseUrl}/mpesa/stkpush/v1/processrequest`, {
       method: 'POST',
       headers: {
@@ -83,7 +93,7 @@ export default async function handler(req, res) {
         PhoneNumber: formattedPhone,
         CallBackURL: callbackUrl,
         AccountReference: accountReference || 'OKOA GAS',
-        TransactionDesc: 'Kit Purchase'
+        TransactionDesc: transactionDescription
       })
     });
 

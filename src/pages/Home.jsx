@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { motion, useInView, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 import { Shield, Zap, Leaf, ArrowRight, CheckCircle, Plus, Minus, ChevronDown } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import PageWrapper, { fadeUp, fadeIn, slideLeft, stagger, Reveal } from '../components/PageWrapper';
 
 const AccordionItem = ({ question, answer, isOpen, onClick }) => {
   return (
@@ -118,7 +119,7 @@ const FAQSection = () => {
         <div className="flex flex-col md:flex-row gap-12 justify-center items-center">
           <a href="mailto:hello@okoagas.co.ke" className="font-bold text-primary hover:underline" style={{ fontSize: '1.1rem' }}>hello@okoagas.co.ke</a>
           <span className="hidden md:block text-slate-300">|</span>
-          <a href="tel:+254700000000" className="font-bold text-primary hover:underline" style={{ fontSize: '1.1rem' }}>+254 700 000 000</a>
+          <a href="tel:+254743800904" className="font-bold text-primary hover:underline" style={{ fontSize: '1.1rem' }}>+254 743 800 904</a>
         </div>
       </div>
     </div>
@@ -159,7 +160,6 @@ const Counter = ({ value, suffix = '', duration = 2 }) => {
     </span>
   );
 };
-import PageWrapper, { fadeUp, fadeIn, slideLeft, slideRight, stagger, Reveal } from '../components/PageWrapper';
 
 const Home = () => {
   const { pathname, hash } = useLocation();
@@ -355,7 +355,7 @@ const Home = () => {
       {/* How it Works */}
       <section id="how-it-works" className="section">
         <div className="container">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="text-center mb-20 max-w-2xl mx-auto">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="text-center mb-12 max-w-2xl mx-auto">
             <h2 className="mb-4">How to get <span className="text-primary">Started</span></h2>
             <p className="text-muted">Three simple steps to transition your kitchen to clean energy.</p>
           </motion.div>
@@ -382,7 +382,7 @@ const Home = () => {
       {/* Testimonials */}
       <section className="section bg-white">
         <div className="container">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="text-center mb-20 max-w-2xl mx-auto">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="text-center mb-12 max-w-2xl mx-auto">
             <h2 className="mb-4">Voice of the <span className="text-primary">Community</span></h2>
             <p className="text-muted">Join over 10,000 families who have switched to Okoa Gas.</p>
           </motion.div>
