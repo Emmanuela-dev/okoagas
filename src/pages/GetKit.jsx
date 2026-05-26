@@ -176,8 +176,8 @@ const GetKit = () => {
                       <h2 className="mb-8">Select Your Kit</h2>
                       <div className="flex flex-col gap-6">
                         {[
-                          { id: '6kg', name: '6kg Starter Kit', price: 'Ksh 0 Upfront', sub: 'Pay only for gas consumed' },
-                          { id: '13kg', name: '13kg Family Kit', price: 'Ksh 0 Upfront', sub: 'Pay only for gas consumed' },
+                          { id: '6kg', name: '6kg Starter Kit', price: '10% Upfront', sub: 'Pay only for gas consumed' },
+                          { id: '13kg', name: '13kg Family Kit', price: '10% Upfront', sub: 'Pay only for gas consumed' },
                         ].map(kit => (
                           <motion.div
                             key={kit.id}
@@ -215,7 +215,7 @@ const GetKit = () => {
                       <div className="glass mb-12" style={{ padding: '32px', borderRadius: '24px', textAlign: 'left', border: '1px solid var(--border)' }}>
                         <div className="flex justify-between mb-4">
                           <span className="text-xl">Hardware Cost:</span>
-                          <span className="text-xl font-bold text-primary">FREE (Zero Upfront)</span>
+                          <span className="text-xl font-bold text-primary">10% Upfront</span>
                         </div>
                         <div className="flex justify-between mb-4">
                           <span className="text-xl">Installation & Setup:</span>

@@ -325,7 +325,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Zero Upfront */}
+      {/* 10% Upfront */}
       <section className="section" style={{ backgroundColor: '#064e3b', color: 'white', overflow: 'hidden' }}>
         <div className="container">
           <div className="max-w-5xl mx-auto text-center">
@@ -390,7 +390,7 @@ const Home = () => {
             {[
               { name: 'Sarah Wanjiku', role: 'Business Owner', img: '/testimonials/sarah.png', quote: 'The pay-as-you-cook feature has helped me manage my kitchen budget so much better. No more unexpected gas refills!' },
               { name: 'David Omari', role: 'Teacher', img: '/testimonials/david.png', quote: 'Safety was my main concern with gas, but the smart leak detection sensor gives me total peace of mind.' },
-              { name: 'Mary Atieno', role: 'Home Maker', img: '/testimonials/mary.png', quote: "The installation was quick and professional. I love that I didn't have to pay anything upfront for the kit." },
+              { name: 'Mary Atieno', role: 'Home Maker', img: '/testimonials/mary.png', quote: "The installation was quick and professional. I love that I only had to pay a small 10% upfront cost for the kit." },
             ].map((t, idx) => (
               <motion.div key={idx} variants={fadeUp} whileHover={{ y: -5, transition: { duration: 0.2 } }} className="glass" style={{ padding: '32px', borderRadius: '24px', background: 'white', boxShadow: '0 15px 30px -5px rgba(0,0,0,0.05)' }}>
                 <div className="flex items-center gap-4 mb-4">
