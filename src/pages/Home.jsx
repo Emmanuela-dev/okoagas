@@ -148,15 +148,15 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Zero Upfront */}
+      {/* 10% Upfront */}
       <section className="section" style={{ backgroundColor: '#064e3b', color: 'white', overflow: 'hidden' }}>
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div variants={slideLeft} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
-              <h2 className="mb-6" style={{ color: 'white', fontSize: '3.5rem' }}>Zero <span style={{ color: 'var(--primary)' }}>Upfront Cost</span> Promise</h2>
-              <p className="mb-12 text-2xl">We believe clean energy should be accessible to everyone. That's why we offer our Smart IoT Kit with zero upfront cost.</p>
+              <h2 className="mb-6" style={{ color: 'white', fontSize: '3.5rem' }}>10% <span style={{ color: 'var(--primary)' }}>Upfront Cost</span> Promise</h2>
+              <p className="mb-12 text-2xl">We believe clean energy should be accessible to everyone. That's why we offer our Smart IoT Kit with just a 10% upfront cost.</p>
               <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-col gap-6">
-                {['No installation fees', 'Free maintenance for life', 'No deposit required for the cylinder', 'Pay as little as Ksh 10 worth of gas'].map((item, idx) => (
+                {['No installation fees', 'Free maintenance for life', 'Just 10% upfront for the kit', 'Pay as little as Ksh 10 worth of gas'].map((item, idx) => (
                   <motion.div key={idx} variants={fadeUp} className="flex gap-4 items-center">
                     <div style={{ background: 'rgba(255,255,255,0.1)', padding: '6px', borderRadius: '50%' }}>
                       <CheckCircle className="w-6 h-6" style={{ color: 'var(--primary)' }} />
@@ -216,7 +216,7 @@ const Home = () => {
             {[
               { name: 'Sarah Wanjiku', role: 'Business Owner', img: '/testimonials/sarah.png', quote: 'The pay-as-you-cook feature has helped me manage my kitchen budget so much better. No more unexpected gas refills!' },
               { name: 'David Omari', role: 'Teacher', img: '/testimonials/david.png', quote: 'Safety was my main concern with gas, but the smart leak detection sensor gives me total peace of mind.' },
-              { name: 'Mary Atieno', role: 'Home Maker', img: '/testimonials/mary.png', quote: "The installation was quick and professional. I love that I didn't have to pay anything upfront for the kit." },
+              { name: 'Mary Atieno', role: 'Home Maker', img: '/testimonials/mary.png', quote: "The installation was quick and professional. I love that I only had to pay a small 10% upfront cost for the kit." },
             ].map((t, idx) => (
               <motion.div key={idx} variants={fadeUp} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="glass" style={{ padding: '48px', borderRadius: '40px', background: 'white', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.05)' }}>
                 <div className="flex items-center gap-6 mb-8">
@@ -242,7 +242,7 @@ const Home = () => {
             </motion.h2>
             <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} className="flex flex-col gap-8">
               {[
-                { q: 'Is there really zero upfront cost?', a: 'Yes! We provide the smart cylinder and IoT meter with no initial purchase price. You only pay for the gas consumed.' },
+                { q: 'Is there an upfront cost?', a: 'Yes! We provide the smart cylinder and IoT meter with just a 10% upfront cost. After that, you only pay for the gas consumed.' },
                 { q: 'How do I pay for gas?', a: 'You can top up your balance via M-Pesa. Simply go to the "Pay & Cook" section or follow the SMS instructions sent to you.' },
                 { q: 'What happens if there is a gas leak?', a: 'Our smart sensor will automatically shut off the valve and send an instant alert to your phone and our command center.' },
                 { q: 'Where do you deliver?', a: 'Currently, we serve all major neighborhoods in Nairobi. We are expanding to other counties soon!' },
