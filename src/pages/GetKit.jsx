@@ -12,11 +12,37 @@ const GetKit = () => {
     name: '', phone: '', county: 'Nairobi', area: '', houseNo: '',
     kitSize: '6kg', accessories: ['Regulator', 'Hose Pipe']
   });
+  const [paymentMethod, setPaymentMethod] = useState('mpesa');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
   const nextStep = () => setStep(s => s + 1);
   const prevStep = () => setStep(s => s - 1);
+
+  const buildOrderMessage = (paymentType) => {
+    const amount = formData.kitSize === '6kg' ? 500 : 1000;
+    return [
+      'New Okoa Gas order',
+      `Payment Method: ${paymentType.toUpperCase()}`,
+      `Name: ${formData.name}`,
+      `Phone: ${formData.phone}`,
+      `Location: ${formData.area}, ${formData.county}`,
+      `House No: ${formData.houseNo}`,
+      `Kit: ${formData.kitSize}`,
+      `Accessories: ${formData.accessories.join(', ')}`,
+      `Amount: Ksh ${amount}`,
+    ].join('\n');
+  };
+
+  const sendOrderToCompanyWhatsApp = (paymentType) => {
+    const whatsappUrl = `https://wa.me/${COMPANY_WHATSAPP_NUMBER}?text=${encodeURIComponent(buildOrderMessage(paymentType))}`;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+  };
+
+  const goToPayment = () => {
+    sendOrderToCompanyWhatsApp(paymentMethod);
+    nextStep();
+  };
 
   const handleMpesaPayment = async () => {
     setLoading(true);
@@ -31,6 +57,7 @@ const GetKit = () => {
         kitSize: formData.kitSize,
         accessories: formData.accessories,
         amount,
+        paymentMethod: 'mpesa',
       };
       const response = await fetch('/api/stk-push', {
         method: 'POST',
@@ -45,23 +72,23 @@ const GetKit = () => {
       const data = await response.json();
       if (data.ResponseCode === '0') {
         setSuccess(true);
-        const message = [
-          'New Okoa Gas order',
-          `Name: ${formData.name}`,
-          `Phone: ${formData.phone}`,
-          `Location: ${formData.area}, ${formData.county}`,
-          `House No: ${formData.houseNo}`,
-          `Kit: ${formData.kitSize}`,
-          `Accessories: ${formData.accessories.join(', ')}`,
-          `Amount: Ksh ${amount}`,
-        ].join('\n');
-
-        const whatsappUrl = `https://wa.me/${COMPANY_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        sendOrderToCompanyWhatsApp('mpesa');
       }
       else alert('Payment request failed: ' + (data.CustomerMessage || 'Unknown error'));
     } catch (error) {
       alert('An error occurred while processing payment. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCashPayment = () => {
+    setLoading(true);
+    try {
+      sendOrderToCompanyWhatsApp('cash');
+      setSuccess(true);
+    } catch (error) {
+      alert('An error occurred while submitting your cash order. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -206,12 +233,39 @@ const GetKit = () => {
                   {step === 4 && (
                     <div className="text-center">
                       <h2 className="mb-4">Complete Payment</h2>
-                      <p className="text-muted text-xl mb-12">
-                        Click below to receive an M-Pesa STK push on your phone <strong>{formData.phone}</strong>.
+                      <p className="text-muted text-xl mb-8">
+                        Your personal and contact details have already been sent to the company WhatsApp for follow-up.
                       </p>
-                      <p className="text-muted mb-8" style={{ fontSize: '1rem' }}>
-                        After payment, your order details will be sent to the company number for follow-up and installation.
+                      <p className="text-muted mb-10" style={{ fontSize: '1rem' }}>
+                        Choose how you want to pay for your kit.
                       </p>
+                      <div className="flex flex-col md:flex-row gap-4 justify-center mb-12">
+                        <button
+                          type="button"
+                          onClick={() => setPaymentMethod('mpesa')}
+                          className="btn-secondary"
+                          style={{
+                            padding: '16px 28px',
+                            border: paymentMethod === 'mpesa' ? '2px solid var(--primary)' : '2px solid #e2e8f0',
+                            background: paymentMethod === 'mpesa' ? '#f0fdfa' : 'white'
+                          }}
+                        >
+                          M-Pesa
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setPaymentMethod('cash')}
+                          className="btn-secondary"
+                          style={{
+                            padding: '16px 28px',
+                            border: paymentMethod === 'cash' ? '2px solid var(--primary)' : '2px solid #e2e8f0',
+                            background: paymentMethod === 'cash' ? '#f0fdfa' : 'white'
+                          }}
+                        >
+                          Cash
+                        </button>
+                      </div>
+
                       <div className="glass mb-12" style={{ padding: '32px', borderRadius: '24px', textAlign: 'left', border: '1px solid var(--border)' }}>
                         <div className="flex justify-between mb-4">
                           <span className="text-xl">Hardware Cost:</span>
@@ -233,11 +287,13 @@ const GetKit = () => {
                       </div>
                       <button
                         className="btn-primary w-full justify-center"
-                        onClick={handleMpesaPayment}
+                        onClick={paymentMethod === 'cash' ? handleCashPayment : handleMpesaPayment}
                         disabled={loading}
                         style={{ padding: '20px', borderRadius: '18px' }}
                       >
-                        {loading ? <><Loader2 className="w-6 h-6 animate-spin mr-3" /> Processing...</> : 'Pay via M-PESA'}
+                        {loading ? (
+                          <><Loader2 className="w-6 h-6 animate-spin mr-3" /> Processing...</>
+                        ) : paymentMethod === 'cash' ? 'Confirm Cash Order' : 'Pay via M-PESA'}
                       </button>
                     </div>
                   )}
@@ -249,7 +305,7 @@ const GetKit = () => {
                       </button>
                     ) : <div />}
                     {step < 4 && (
-                      <button className="btn-primary" onClick={nextStep}>
+                      <button className="btn-primary" onClick={step === 3 ? goToPayment : nextStep}>
                         Next Step <ChevronRight className="w-6 h-6 ml-2" />
                       </button>
                     )}
